@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright 2019-present HiveMQ GmbH
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<hivemq xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="config.xsd">
+
+    <listeners>
+        <tcp-listener>
+            <port>1883</port>
+            <bind-address>0.0.0.0</bind-address>
+        </tcp-listener>
+
+        <!-- Secure connection -->
+        <tls-tcp-listener>
+            <port>8883</port>
+            <bind-address>0.0.0.0</bind-address>
+            <name>secure-listener</name>
+            <tls>
+                <keystore>
+                    <!-- Configuring the path to the key store -->
+<!--                    <path>../hivedemo/hivemq-config/keystore.jks</path>-->
+                    <path>/keystore.jks</path>
+                    <!-- The password of the key store -->
+                    <password>keystorepassword</password>
+                    <!-- The password of the private key -->
+                    <private-key-password>keystorepassword</private-key-password>
+                </keystore>
+                <truststore>
+<!--                    <path>../hivemq-config/truststore.jks</path>-->
+                    <path>/truststore.jks</path>
+                    <password>truststorepassword</password>
+                </truststore>
+                <client-authentication-mode>REQUIRED</client-authentication-mode>
+                <protocols>
+                    <protocol>TLSv1.2</protocol>
+                    <protocol>TLSv1.3</protocol>
+                </protocols>
+                <cipher-suites>
+                    <cipher-suite>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</cipher-suite>
+                    <cipher-suite>TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</cipher-suite>
+                </cipher-suites>
+            </tls>
+        </tls-tcp-listener>
+
+    </listeners>
+
+<!--    <security>-->
+<!--        <ssl-certificate-revocation-check>-->
+<!--            <enabled>false</enabled>-->
+<!--        </ssl-certificate-revocation-check>-->
+<!--    </security>-->
+
+    <anonymous-usage-statistics>
+        <enabled>true</enabled>
+    </anonymous-usage-statistics>
+
+<!--    &lt;!&ndash; Changing client session time to live to one hour &ndash;&gt;-->
+<!--    <mqtt>-->
+<!--        <session-expiry>-->
+<!--            <max-interval>3600</max-interval>-->
+<!--        </session-expiry>-->
+<!--    </mqtt>-->
+
+
+
+
+
+<!--    <control-center>-->
+<!--        <enabled>true</enabled>-->
+<!--    </control-center>-->
+
+<!--    <rest-api>-->
+<!--        &lt;!&ndash; Enables or disables the HiveMQ REST API&ndash;&gt;-->
+<!--        <enabled>true</enabled>-->
+<!--        &lt;!&ndash; Enables or disables authentication and authorization for the HiveMQ REST API&ndash;&gt;-->
+<!--        <auth>-->
+<!--            <enabled>false</enabled>-->
+<!--        </auth>-->
+<!--        <listeners>-->
+<!--            <http>-->
+<!--                <port>8888</port>-->
+<!--                <bind-address>127.0.0.1</bind-address>-->
+<!--                &lt;!&ndash; Defines listener name to help distinguish between multiple listeners &ndash;&gt;-->
+<!--&lt;!&ndash;                <name>your-http-listener</name>&ndash;&gt;-->
+<!--            </http>-->
+<!--        </listeners>-->
+<!--    </rest-api>-->
+
+
+
+</hivemq>
